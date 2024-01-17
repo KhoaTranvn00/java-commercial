@@ -24,3 +24,6 @@ spring:
     user:
       name: abc
       password: abc
+
+jwt:
+  secret: secretPassword
