@@ -1,7 +1,7 @@
 package com.takhoa.commercial.controller;
 
 import com.takhoa.commercial.entity.User;
-import com.takhoa.commercial.service.UserService;
+import com.takhoa.commercial.config.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/{username}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public Optional<User> getByUsername(@PathVariable String username) {
         return userService.getUserByUsername(username);
     }

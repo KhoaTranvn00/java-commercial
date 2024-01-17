@@ -1,6 +1,7 @@
 package com.takhoa.commercial.config;
 
 import com.takhoa.commercial.entity.User;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,12 +11,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Getter
 public class UserInfoDetails implements UserDetails {
+    private Long id;
     private String username;
     private String password;
     private List<GrantedAuthority> authorities;
 
     public UserInfoDetails(User userInfo) {
+        id = userInfo.getId();
         username = userInfo.getUsername();
         password = userInfo.getPassword();
         authorities = Arrays.stream(userInfo.getRoles().split(","))

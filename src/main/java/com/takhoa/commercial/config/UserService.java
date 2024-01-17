@@ -1,4 +1,4 @@
-package com.takhoa.commercial.service;
+package com.takhoa.commercial.config;
 
 import com.takhoa.commercial.config.UserInfoDetails;
 import com.takhoa.commercial.entity.User;
@@ -27,9 +27,8 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> userInfo = userRepository.findByUsername(username);
-        return userInfo.map(UserInfoDetails::new)
+        return userRepository.findByUsername(username)
+            .map(UserInfoDetails::new)
             .orElseThrow(() -> new UsernameNotFoundException("user not found " + username));
-
     }
 }
